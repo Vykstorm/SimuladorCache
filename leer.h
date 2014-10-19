@@ -22,10 +22,10 @@ typedef struct
 }configuracion;
 
 /**
-@return Devuelve la configuración espeficada por el fichero. Y si la
-configuración no tiene el formato o es incorrecta, lanzamos un error.
+@return Devuelve la configuración espeficada por el fichero f. (Configuración apuntada por el puntero config) Y si la
+configuración no tiene el formato correcto, lanzamos un error.
 */
-configuracion leer_configuracion(FILE* f);
+void leer_configuracion(FILE* f, configuracion* conf);
 
 
 
