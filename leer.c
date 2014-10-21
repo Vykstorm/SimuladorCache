@@ -1,14 +1,13 @@
 #include "leer.h"
 
 #include <string.h>
+#include <stdlib.h>
 
 
-unsigned int leer_direccion(FILE* f)
+int leer_direccion(FILE* f, unsigned int* direccion)
 {
-	unsigned int dir;
 	/* leemos un entero hexadecimal desde el fichero */
-	fscanf(f, "%x", &dir);
-	return dir;
+	return (fscanf(f, "%x", direccion) == 1);
 }
 
 
