@@ -4,11 +4,11 @@
 #include <stdio.h>
 
 /**
-@return Devuelve la siguiente dirección de 32-bit del fichero apuntado por f.
-Se supone que f es un manejador de fichero correcto.
-Si no se pudo leer desde el fichero se genera un error.
+Con este método obtenemos la siguiente dirección del fichero.
+@param direccion Es la variable en donde se guardará la dirección de 32-bits.
+@return Devuelve un 1 si se leyó la dirección, o un 0, si bién hemos llegado al final del fichero.
 */
-unsigned int leer_direccion(FILE* f);
+int leer_direccion(FILE* f, unsigned int* direccion);
 
 
 typedef struct
