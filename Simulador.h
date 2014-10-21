@@ -1,7 +1,7 @@
 #ifndef __SIMULADOR__H
 #	define __SIMULADOR__H
 
-# include "leer.h"
+# include "Leer.h"
 
 /**
 Ejecuta la simulación
