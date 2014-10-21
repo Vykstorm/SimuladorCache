@@ -1,4 +1,4 @@
-#include "Simulador.h"
+#include "SimuladorCache.h"
 
 int main(int argc, char** argv)
 {
