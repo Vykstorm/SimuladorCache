@@ -11,7 +11,24 @@ direcciones 32-bit.
 */
 double simular(FILE* traza, const configuracion* conf)
 {
-    return 1;
+    unsigned int accesos, fallos;
+    unsigned int direccion;
+    accesos = fallos = 0;
+
+    /* Configuramos la caché */
+    inicializar_cache(conf);
+
+    /* accedemos secuencialmente a las direcciones indicadas en la traza y contamos el nºaccesos y
+    nºfallos */
+    while(leer_direccion(traza,&direccion))
+    {
+        ++accesos;
+        if(!acceder_direccion(direccion))
+            ++fallos;
+    }
+
+    /* calculamos la frecuencia de fallos y la devolvemos */
+    return (accesos > 0) ? (double)fallos / accesos : 1.0f;
 }
 
 /**
