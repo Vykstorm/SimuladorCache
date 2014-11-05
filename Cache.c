@@ -1,9 +1,10 @@
 #include "Cache.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void inicializar_cache(const configuracion* conf)
-{
+configuracion config;
 
-}
 
 unsigned int obtener_direccion_bloque(unsigned int direccion);
 
@@ -12,6 +13,14 @@ int es_acierto(unsigned int direccion_bloque);
 void transferir_bloque(unsigned int direccion_bloque);
 
 
+
+
+
+void inicializar_cache(const configuracion* conf)
+{
+    /* copiamos la configuración */
+    memcpy((void*)&config, (const void*)conf, sizeof(configuracion));
+}
 
 int acceder_direccion(unsigned int direccion)
 {
@@ -47,6 +56,4 @@ void transferir_bloque(unsigned int direccion_bloque)
 {
 
 }
-
-
 
