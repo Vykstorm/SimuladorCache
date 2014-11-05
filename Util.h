@@ -26,4 +26,19 @@ Es decir, si x es de la forma 2^y, calcula 'y' devuelve y.
 unsigned int log_base_2(unsigned int x);
 
 
+/**
+Esta función devuelve la siguiente potencia de 2 siguiente al valor especificado.
+Devuelve un número de la forma 2^x con x un entero natural, tal que 2^x >= valor y además,
+para todo número de la forma 2^y, con y entero, tal que 2^y < valor, se cumplirá que 2^x > 2^y
+*/
+unsigned long int redondear_a_potencia_2(unsigned long int valor);
+
+
+/**
+@return Devuelve un valor booleano indicando si el entero es potencia de 2.
+*/
+int es_potencia_2(unsigned long int valor);
+
+
+
 #endif

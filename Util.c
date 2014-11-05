@@ -47,3 +47,18 @@ unsigned int log_base_2(unsigned int x)
     }
     return r;
 }
+
+
+unsigned long int redondear_a_potencia_2(unsigned long int valor)
+{
+    /* redondeamos el valor a la primera potencia de 2 que sea mayor o igual que el valor */
+    unsigned long int i = 1;
+    while(i < valor)
+        i *= 2;
+    return i;
+}
+
+int es_potencia_2(unsigned long int valor)
+{
+    return redondear_a_potencia_2(valor) == valor;
+}
