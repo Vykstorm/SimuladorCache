@@ -40,5 +40,11 @@ unsigned long int redondear_a_potencia_2(unsigned long int valor);
 int es_potencia_2(unsigned long int valor);
 
 
+/**
+@return Devuelve un número aleatorio entre a y b. a inclusive y b exclusive. Es decir, un número
+aleatorio en el rango [a, b)
+a debe ser estrictamente menor que b.
+*/
+unsigned int numero_aleatorio(unsigned int a, unsigned int b);
 
 #endif

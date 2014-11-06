@@ -62,3 +62,20 @@ int es_potencia_2(unsigned long int valor)
 {
     return redondear_a_potencia_2(valor) == valor;
 }
+
+int randomize = 1;
+
+unsigned int numero_aleatorio(unsigned int a, unsigned int b)
+{
+    if(a >= b)
+    {
+        fprintf(stderr, "error en numero_aleatorio(rango invalido)\n");
+        exit(-1);
+    }
+    if(randomize)
+    {
+        randomize = 0;
+        srand(time(NULL));
+    }
+    return a + (rand() % (b - a));
+}
