@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Leer.h"
+#include "Cache.h"
 
 
 /**
@@ -87,4 +88,5 @@ int main(int argc, char** argv)
     /* Cerramos el fichero de la traza de direcciones */
     fclose(fichero_traza);
 
+    return 0;
 }
