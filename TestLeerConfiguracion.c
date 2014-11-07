@@ -21,4 +21,6 @@ int main()
 	printf("Reemplazo: %hu (%s)\n", conf.reemplazo, conf.reemplazo ? "LRU" : "Aleatorio");
 
 	fclose(f);
+
+	return 0;
 }

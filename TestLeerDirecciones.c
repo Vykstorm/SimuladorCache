@@ -16,4 +16,6 @@ int main()
 		printf("%x ", direccion);
 	printf("\n");
 	fclose(f);
+
+	return 0;
 }
