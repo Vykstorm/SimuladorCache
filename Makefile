@@ -6,7 +6,7 @@ LDFLAGS=
 SOURCES=Util.c Leer.c Cache.c SimuladorCache.c 
 OBJECTS=$(SOURCES:.c=.o)
 EXEC=SimuladorCache
-TESTS=TestLeerConfiguracion TestLeerDirecciones 
+
 
 all: build
 
@@ -23,12 +23,6 @@ clean:
 $(EXEC): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-# Compilación de los tests
-TestLeerConfiguracion: TestLeerConfiguracion.o Leer.o Util.o
-	$(CC)  $(LDFLAGS) $^ -o $@
-
-TestLeerDirecciones: TestLeerDirecciones.o Leer.o Util.o 
-	$(CC) $(LDFLAGS) $^ -o $@ 
 
 # Regla para compilar código fuente .c
 .c.o:
