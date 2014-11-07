@@ -5,16 +5,17 @@
 
 
 /**
+Esta función realiza la simulación y devuelve el nºaccesos totales a la caché y además, el nº de fallos que se produjeron.
 @param traza Es el stream que apunta al archivo que contiene la traza de las
 direcciones 32-bit.
 @param conf Es la configuración para la cache.
-@return Devuelve la frecuencia de fallos normalizada en el rango [0,1]
+@param accesos Es un puntero que guardará el nº de accesos realizados en total.
+@param fallos Es un puntero que guardará el nº de fallos.
 */
-double simular(FILE* traza, const configuracion* conf)
+void simular(FILE* traza, const configuracion* conf, unsigned int* accesos, unsigned int* fallos)
 {
-    unsigned int accesos, fallos;
     unsigned int direccion;
-    accesos = fallos = 0;
+    *accesos = *fallos = 0;
 
     /* Configuramos la caché */
     inicializar_cache(conf);
@@ -23,13 +24,11 @@ double simular(FILE* traza, const configuracion* conf)
     nºfallos */
     while(leer_direccion(traza,&direccion))
     {
-        ++accesos;
+        ++(*accesos);
         if(!acceder_direccion(direccion))
-            ++fallos;
+            ++(*fallos);
     }
 
-    /* calculamos la frecuencia de fallos y la devolvemos */
-    return (accesos > 0) ? (double)fallos / accesos : 1.0f;
 }
 
 /**
@@ -81,7 +80,17 @@ int main(int argc, char** argv)
 
 
     /* Realizamos la simulación */
-    double freq_fallos = simular(fichero_traza, &conf);
+    unsigned int fallos, accesos;
+    double freq_fallos;
+
+    simular(fichero_traza, &conf, &accesos, &fallos);
+    freq_fallos = (accesos > 0) ? (double)fallos / accesos : 1.0f;
+
+#ifdef _DEBUG
+    printf("Numero total de accesos: %u\n",  accesos);
+    printf("Numero total de aciertos: %u\n", accesos - fallos);
+    printf("Numero total de fallos: %u\n", fallos);
+#endif
 
     printf("La frecuencia de fallos para esta cache es: %.3f %%\n", freq_fallos * 100);
 
