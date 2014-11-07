@@ -1,5 +1,7 @@
 Tlin: 64
 Nlin: 1024
 Asoc: 8
-Rpla: 1
+Rpla: 0
+
+
 
