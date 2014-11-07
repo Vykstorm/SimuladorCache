@@ -2,11 +2,13 @@
 
 CC=gcc
 CFLAGS=-O3 -Wall 
+ifeq ($(DEBUG),si)
+CFLAGS+=-D_DEBUG
+endif
 LDFLAGS=
 SOURCES=Util.c Leer.c Cache.c SimuladorCache.c 
 OBJECTS=$(SOURCES:.c=.o)
 EXEC=SimuladorCache
-
 
 all: build
 
