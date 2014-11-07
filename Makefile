@@ -18,7 +18,6 @@ tests: $(TESTS)
 clean: 
 	rm -f *.o
 	rm -f $(EXEC)
-	rm -f $(TESTS)
 
 $(EXEC): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
