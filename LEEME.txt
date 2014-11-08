@@ -1,0 +1,105 @@
+AUTORES:
+Alberto Salinero del Hoyo
+Víctor Ruiz Gómez
+
+
+
+DESCRIPCIÓN:
+Este programa permite simular el funcionamiento de una caché configurada con
+una serie de parámetros, proporcionando la tasa de errores que produce el 
+acceso a un conjunto de direcciones (32-bit) de forma secuencial.
+
+La forma en la que se le indica al programa la configuración de la caché y 
+la traza de direcciones, se detalla en el apartado "USO"
+
+
+COMPILAR EL PROYECTO:
+Se proporciona una archivo de compilación automática (Makefile), que compilará
+el proyecto.
+
+Para compilar el proyecto:
+
+make
+
+o 
+
+make all
+
+
+Para eliminar el programa que resultó de la compilación del proyecto, y todos
+los archivos de código ejecutable (archivos con extensión .o), introducir
+por la línea de comandos:
+
+make clean
+
+
+
+El make incluye un parámetro que puede ser especificado en la línea de comandos.
+
+
+make DEBUG=no   --> solo muestra la frequencia de fallos de la simulación.  
+
+make DEBUG=si   --> muestra la frequencia de fallos además de información adicional.	
+		(nº total de accesos, nº total de fallos, además de indicar por cada acceso,
+		la dirección a la que se accedió y si se produjo un fallo o un acierto)
+
+Por defecto,  DEBUG=no
+
+
+
+
+USO:
+
+El programa generado tendrá el nombre "SimuladorCache".
+Podrá tomar dos argumentos por la línea de comandos:
+- El nombre del archivo que contiene la configuración de la caché.
+- El nombre del archivo que contiene la traza de direcciones.
+
+La syntaxis es la siguiente:
+
+./SimuladorCache [fichero_configuracion] [fichero_traza]
+
+Si no se indica el fichero de configuración, se leerá por defecto de 
+"config.txt"
+
+Si no se indica el fichero que contiene la traza de direcciones, se leerá
+de la entrada estandar (stdin)
+
+
+e.g
+
+Este programa lee la configuración de "config.txt" y la traza de direcciones del
+fichero "traza.txt"
+./SimuladorCache config.txt traza.txt 
+
+Lo siguiente establecería la misma configuración de caché y se leerían las 
+misma direcciones (pero leyendolas de la entrada estándar)
+
+cat traza.txt | ./SimuladorCache config.txt
+
+o simplemente...
+
+cat traza.txt | ./SimuladorCache
+
+
+
+DETALLES BÁSICOS DE LA IMPLEMENTACIÓN:
+
+
+El simulador se ha estructurado en diferentes ficheros que contienen el código fuente:
+
+Leer.h y Leer.c
+Es el módulo encargado de la lectura tanto de la configuración de la caché como las direcciones.
+
+Util.h Util.c
+Define funciones útiles para otros módulos, como por ejemplo, rangobits (entre otras)
+
+Cache.h Cache.c
+Es el núcleo del simulador. Define que información debemos almacenar de la caché para que la simulación
+funcione y permite "acceder a la cache", y comprobar si ese acceso fue un fallo o un acierto.
+
+
+SimuladorCache.c
+Implementa la parte más externa del simulador. 
+Lee la configuración, configura la caché y accede a la misma, contando el nº accesos y nºfallos.
+Por último, calcula la frecuencia de fallos en base al nº accesos y nºfallos y lo muestra por pantalla.
